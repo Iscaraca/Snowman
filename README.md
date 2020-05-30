@@ -10,5 +10,5 @@ A language designed for simplicity.
 - package management
 
 ### Developers:
-Iscaraca https://github.com/Iscaraca
+Iscaraca https://github.com/Iscaraca <br />
 thepoppycat https://github.com/thepoppycat
