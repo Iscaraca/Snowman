@@ -11,6 +11,7 @@ Snowman 0.0.1
 ### Must have: 
 - python 3.7+
 - all dependencies in [requirements.txt](requirements.txt)
+
 Move the file "test.snow" into the folder "snowCompiler" and run the python file "snowCompiler.py"
 
 
