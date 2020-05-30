@@ -3,6 +3,9 @@
 
 A language designed for simplicity.
 
+### Version:
+Snowman 0.0.1
+
 ### TODO:
 - docs are unfinished
 - syntax highlighter
