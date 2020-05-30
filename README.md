@@ -7,6 +7,7 @@ A language designed for simplicity.
 ## How to use
 ### Version:
 Snowman 0.0.1
+
 Must have: 
 - python 3.7+
 - all dependencies in [requirements.txt](requirements.txt)
