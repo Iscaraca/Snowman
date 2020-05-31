@@ -1,4 +1,3 @@
-
 class snowExecute:
 
     def __init__(self, tree, env):
@@ -53,7 +52,7 @@ class snowExecute:
             self.env[node[1]] = self.walkTree(node[2])
             return node[1]
 
-        if node[0] == 'var':
+        if node[0] == 'show_var':
             try:
                 return self.env[node[1]]
             except LookupError:
