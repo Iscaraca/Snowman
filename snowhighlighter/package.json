@@ -1,0 +1,20 @@
+{
+    "name": "snowman",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": ">=0.9.0-pre.1"
+    },
+    "publisher": "Iscaraca",
+    "contributes": {
+        "languages": [{
+            "id": "snowman",
+            "aliases": ["snowman", "snow"],
+            "extensions": [".snow"]
+        }],
+        "grammars": [{
+            "language": "snowman",
+            "scopeName": "source.snowman",
+            "path": "./syntaxes/snowman.tmLanguage"
+        }]
+    }
+}

@@ -1,0 +1,231 @@
+#################################################################
+## Iro
+################################################################ 
+##
+## * Press Ctrl + '+'/'-' To Zoom in
+## * Press Ctrl + S to save and recalculate... 
+## * Documents are saved to web storage.
+## * Only one save slot supported.
+## * Matches cannot span lines.
+## * Unicode chars must be defined in \u0000 to \uffff format.
+## * All matches must be contained by a single group ( ... )
+## * Look behinds not permitted, (?<= or (?<!
+## * Look forwards are permitted (?= or (?!
+## * Constants are defined as __my_const = (......)
+## * The \= format allows unescaped regular expressions
+## * Constants referenced by match \= $${__my_const}
+## * Constants can reference other constants
+## * You are free to delete all the default scopes.
+## * Twitter : ainslec , Web: http://eeyo.io/iro
+##
+################################################################
+
+name                   = snowman
+file_extensions []     = snow;
+
+################################################################
+## Constants
+################################################################
+
+__MY_CONSTANT \= (\b[a-z][a-z0-9]*)
+
+################################################################
+## Styles
+################################################################
+
+styles [] {
+
+.comment : style {
+   color                 = grey
+   italic                = true
+   ace_scope             = comment
+   textmate_scope        = comment
+   pygments_scope        = Comment
+}
+
+.keyword : style {
+   color     = gold
+   ace_scope             = keyword
+   textmate_scope        = keyword
+   pygments_scope        = Keyword
+}
+
+.typedef : style {
+   color     = #ffa436
+   textmate_scope        = support.type
+}
+
+
+.function : style {
+   color = light_blue
+   textmate_scope        = name
+}
+
+.method : style {
+   color = #87B5FF
+   textmate_scope        = name
+}
+
+.numeric : style {
+   color                 = light_green
+   ace_scope             = constant.numeric
+   textmate_scope        = constant.numeric
+   pygments_scope        = Number
+}
+
+.boolean : style {
+   color                 = pink
+   ace_scope             = constant.language
+   textmate_scope        = constant.language
+}
+
+.punctuation : style {
+   color     = white
+   ace_scope             = punctuation
+   textmate_scope        = punctuation
+   pygments_scope        = Punctuation
+}
+
+.quotes : style {
+   color     = red_2
+   ace_scope             = punctuation
+   textmate_scope        = punctuation
+   pygments_scope        = Punctuation
+}
+
+.text : style {
+   color                 = red_2
+   ace_scope             = text
+   textmate_scope        = text
+   pygments_scope        = String
+}
+
+.name : style {
+   color                 = white
+   textmate_scope        = variable.other
+}
+
+}
+
+#################################################
+## Parse contexts
+#################################################
+
+contexts [] {
+
+##############################################
+## Main Context - Entry point context
+##############################################
+
+main : context {
+   : pattern {
+      regex          \= (show|input|type)
+      styles []       = .function;
+   }
+
+   : pattern {
+      regex          \= (string|int|bool|index|value)
+      styles []       = .typedef;
+   }
+   
+   : pattern {
+      regex          \= (for|in|while|do|to)
+      styles []       = .keyword;
+   }
+   
+   : pattern {
+      regex          \= (true|false)
+      styles []       = .boolean;
+   }
+   
+   : inline_push {
+      regex          \= (\.)
+      styles []       = .punctuation;
+      default_style   = .method
+      : pop {
+         regex       \= (\(*\))
+         styles []    = .punctuation;
+      }
+   }
+   : include "numeric" ;
+   
+   : inline_push {
+      regex          \= (\()
+      styles []       = .punctuation;
+      : pop {  
+         regex       \= (\))
+         styles []    = .punctuation;
+      }
+      : include "main" ;
+   }
+   
+   
+   : inline_push {
+      regex          \= (\{)
+      styles []       = .punctuation;
+      : pop {  
+         regex       \= (\})
+         styles []    = .punctuation;
+      }
+      : include "main" ;
+   }
+
+   
+   : inline_push {
+      regex          \= (\")
+      styles []       = .quotes;
+      default_style   = .text
+      : pop {
+         regex       \= (\")
+         styles []    = .quotes;
+      }
+   }
+   
+   : include "multi_line_comment" ;
+   
+   
+   : pattern {
+      regex          \= (//.*)
+      styles []       = .comment;
+   }   
+
+   
+   : pattern {
+      regex          \= ([A-Za-z]*)
+      styles []       = .name;
+   }
+}
+
+#################################################
+## End of Contexts
+#################################################
+
+###########################################
+## Numeric Context
+###########################################
+
+numeric : context {
+   : pattern {
+      regex          \= (\b\d+)
+      styles []       = .numeric;
+   }
+}
+
+###########################################
+## Multi Line Comment Context
+###########################################
+
+multi_line_comment : context {
+   description        = multiline
+   : inline_push {
+      regex          \= (/\*)
+      styles []       = .comment;
+      default_style   = .comment
+      : pop {
+         regex       \= (\*/)
+         styles []    = .comment;
+      }
+   }
+}
+   
+}
