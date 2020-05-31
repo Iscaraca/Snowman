@@ -14,6 +14,8 @@ Snowman 0.0.1
 
 Move the file "test.snow" into the folder "snowCompiler" and run the python file "snowCompiler.py"
 
+### VSCode extension
+Download the snowhighlighter folder and place it in the vscode extension directory. We will work on getting it published to the VSCode extension marketplace **WHEN IT WORKS (IT STILL DOESN'T WORK)** soon.
 
 ## Developer notes
 ### TODO:
