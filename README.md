@@ -26,5 +26,5 @@ Download the snowhighlighter folder and place it in the vscode extension directo
 - add Snowman to PATH and run with ``snow test.snow``
 
 ### Developers:
-Iscaraca https://github.com/Iscaraca <br />
-thepoppycat https://github.com/thepoppycat
+Iscaraca 🐼    | https://github.com/Iscaraca <br />
+thepoppycat 🐱 | https://github.com/thepoppycat
