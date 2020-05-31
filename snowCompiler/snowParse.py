@@ -54,7 +54,7 @@ class snowParser(Parser):
 
     @_('SHOW "(" NAME ")"')
     def var_assign(self, p):
-        return ('show', p.NAME)
+        return ('show_var', p.NAME)
 
     @_('expr')
     def statement(self, p):
