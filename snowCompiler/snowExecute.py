@@ -10,6 +10,8 @@ class snowExecute:
             return node
         if isinstance(node, str):
             return node
+        if isinstance(node, bool):
+            return node
 
         if node is None:
             return None
@@ -27,6 +29,9 @@ class snowExecute:
         if node[0] == 'str':
             return node[1]
 
+        if node[0] == 'bool':
+            return node[1]
+
         if node[0] == 'if_stmt':
             result = self.walkTree(node[1])
             if result:
@@ -36,8 +41,18 @@ class snowExecute:
         if node[0] == 'show':
             print(self.walkTree(node[1]))
 
-        if node[0] == 'condition_eqeq':
+        if node[0] == 'condition_eq':
             return self.walkTree(node[1]) == self.walkTree(node[2])
+        if node[0] == 'condition_le':
+            return self.walkTree(node[1]) <= self.walkTree(node[2])
+        if node[0] == 'condition_lt':
+            return self.walkTree(node[1]) < self.walkTree(node[2])
+        if node[0] == 'condition_ge':
+            return self.walkTree(node[1]) >= self.walkTree(node[2])
+        if node[0] == 'condition_gt':
+            return self.walkTree(node[1]) > self.walkTree(node[2])
+        if node[0] == 'condition_ne':
+            return self.walkTree(node[1]) != self.walkTree(node[2])
 
         if node[0] == 'add':
             return self.walkTree(node[1]) + self.walkTree(node[2])
@@ -50,10 +65,10 @@ class snowExecute:
 
         if node[0] == 'var_assign':
             self.env[node[1]] = self.walkTree(node[2])
-            return node[1]
 
         if node[0] == 'show_var':
             try:
+                print(self.env[node[1]])
                 return self.env[node[1]]
             except LookupError:
                 print("Undefined variable '"+node[1]+"' found!")

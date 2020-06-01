@@ -8,5 +8,7 @@ env = {}
 
 with open('testbed.snow', 'r') as f:
     for line in f:
+            print("\n")
             tree = parser.parse(lexer.tokenize(line))
+            print('tree: ',tree)
             snowExecute(tree, env)

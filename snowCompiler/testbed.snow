@@ -1,0 +1,13 @@
+show(2)
+show("Watermelon")
+show(true)
+num = 5
+words = "lmao"
+thing = true
+show(num)
+show(words)
+show(thing)
+
+new_num = 5+12
+show(new_num)
+show(5+12)
