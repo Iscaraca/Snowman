@@ -12,7 +12,7 @@ Snowman 0.0.1
 - python 3.7+
 - all dependencies in [requirements.txt](requirements.txt)
 
-Move the file "test.snow" into the folder "snowCompiler" and run the python file "snowCompiler.py"
+Run the python file snowCompiler/snowCompiler.py to execute code in snowCompiler/test.snow
 
 ### VSCode Syntax Highlighter
 Download the snowhighlighter folder and place it in the vscode extension directory. We will work on getting it published to the VSCode extension marketplace **WHEN IT WORKS (IT STILL DOESN'T WORK)** soon.
