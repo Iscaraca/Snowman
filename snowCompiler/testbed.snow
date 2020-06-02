@@ -1,11 +1,13 @@
 show(2)
 show("Watermelon")
 show(true)
+show(["snow", 234])
+
 num = 5
-words = "lmao"
+word = "lmao"
 thing = true
 show(num)
-show(words)
+show(word)
 show(thing)
 
 new_num = 5+12

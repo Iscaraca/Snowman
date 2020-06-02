@@ -66,8 +66,13 @@ class snowParser(Parser):
         print("this is an evaulated variable assignment")
         return ('var_assign', p.VAR, p.expr)
 
+    @_('VAR "=" ARRAY')
+    def statement(self, p):
+        print("this is an array variable assignment")
+        return ('var_assign', p.VAR, p.ARRAY)
+
     @_('VAR "=" STRING')
-    def var_assign(self, p):
+    def statement(self, p):
         print("this is a string variable assignment")
         return ('var_assign', p.VAR, p.STRING)
 
@@ -80,6 +85,11 @@ class snowParser(Parser):
     def statement(self, p):
         print("this is a console statement")
         return p.showing_console
+
+    @_('SHOW "(" ARRAY ")"')
+    def showing_console(self, p):
+        print("this is to show array")
+        return ('show', p.ARRAY)
     
     @_('SHOW "(" STRING ")"')
     def showing_console(self, p):

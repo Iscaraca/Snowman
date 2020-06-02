@@ -1,7 +1,7 @@
 from sly import Lexer
 
 class snowLexer(Lexer):
-    tokens = {IF, THEN, ELSE, EQ, LT, LE, GT, GE, NE, FOR, TO, WHILE, SHOW, VAR, NUMBER, BOOL, STRING, }
+    tokens = {IF, THEN, ELSE, EQ, LT, LE, GT, GE, NE, FOR, TO, WHILE, SHOW, VAR, NUMBER, BOOL, STRING, ARRAY}
     ignore = '\t '
 
     literals = { '=', '+', '-', '/', '*', '(', ')', ',', ';' }
@@ -30,6 +30,7 @@ class snowLexer(Lexer):
     SHOW = r'show'
 
     # Data types
+    ARRAY = r'\[.*?\]'
     BOOL = r'true|false'
     STRING = r'".*?"'
 
